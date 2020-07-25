@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block blog %}
+{% load crispy_forms_tags %}
+{% load static %}
+<style>
+  .text {
+    color: cyan;
+  }
+</style>
+<br><br>
+<div class="container-fluid">
+
+  <br>
+  <div class="row">
+    <div class="col-md-8 mt-3 mx-auto"><br>  
+      
+
+      <div class="card-body">
+        <h1>{{ post.title }}</h1>
+        <hr>
+        <p class=" text-muted">{{ post.author }} | {{ post.created_on }}</p>
+        <img class="card-img-top" src="/media/{{post.poster}}" alt="Card image cap">
+        <br><br>
+        <p class="card-text ">{{ post.content | safe }}</p>
+        <h6 class="peach-gradient ">.</h6>
+      </div>
+    </div>
+    
+
+  </div>
+
+
+  {% endblock  %}

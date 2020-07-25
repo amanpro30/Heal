@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block physiotherapist_show_slot %}
+<!-- NAV BAR -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container">
+        <a href='/' class="navbar-brand"><b>HEAL AT HOME</b></a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href='{% url "patient:home" %}' class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href='{% url "patient:modify_profile" %}' class="nav-link">Edit Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href='' class="nav-link">Bookings</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href='/patient/show_complaint_feedback/' class="nav-link">Show complaints/feedback</a>
+                </li>
+                <li class="nav-item active">
+                    <a href='' class="nav-link">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br />
+<br />
+<form id="Filter_Form" filter-url="{% url 'patient:filter_tests' %}" novalidate action="">
+    <div class="container">
+        <div class="row">
+            <input class="form-control col-md-6 offset-md-2" type="text" placeholder="Search for Tests.." id="filter">
+            <button class="col-md-2 btn btn-dark" id="search">Search</button>
+        </div>
+    </div>
+</form>
+<br />
+<br />
+
+<div class="container">
+    <div class="row" id="filter-result">
+        {% for test in tests %}
+        <div class="col-md-3 medicine_hover">
+            <div class="card medicine_1" style="text-align: center;border: none;">
+                <img class="card-img-top img_list" src="/media/{{test.profile_photo}}" alt="{{test.name}}"
+                    style="width:2300; height:200px;">
+                <div class="card-body">
+                    <h4 class="card-title">{{test.name}}</h4>
+
+                    <p class="card-text">
+                        <i><span style="font-size: 10px;">by <a href="#">{{test.test_type}}</a></span></i><br>
+                        <span style="color: red;"><i class="fa fa-rupee"
+                                style="font-size: 14px;"></i><s>{{ test.price }}</s></span>
+                        <span style="color: red;"><i class="fa fa-rupee"
+                                style="font-size: 14px;"></i>{{ test.discounted_price }}</span>
+                    </p>
+                    <div class="row">
+                        <button data-toggle="modal" class="btn btn-dark" href="#myModal2">
+                            View Details
+                        </button>
+                        <a href="{% url 'patient:lab_lists' test_id=test.id %}" class="btn btn-secondary">
+                            Click to Buy
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script>
+    $("#search").click(function () {
+        var url = $("#Filter_Form").attr("filter-url");
+        var keyword = $(this).val();
+        console.log('Changed', url, keyword);
+        $.ajax({
+            url: url,
+            data: {
+                'keyword': keyword
+            },
+            success: function (data) {
+                $("#filter-result").html(data);
+            }
+        }, () => { console.log(dateId); });
+    });
+</script>
+{% endblock %}

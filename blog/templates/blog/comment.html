@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block body %}
+<div class="aqua-gradient">
+
+    <br><br><br><br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-auto border dark-border bg-light"><br>
+
+                <center>
+                    <div class="box_general_3 write_review  " style="font-size: 18px;">Write a review for Doctor </div>
+                </center>
+                <hr>
+                <form method="post" style="font-size: px;">
+                    {% csrf_token %}
+                    <label for="review">Give a review:</label>
+                    <select name="review" id="review" class="w-100 blue-gracdient" autofocus>
+                        <option value="1.0">1</option>
+                        <option value="2.0">2</option>
+                        <option value="3.0">3</option>
+                        <option value="4.0">4</option>
+                        <option value="5.0">5</option>
+                    </select><br><br>
+                    <label for="review">Content:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <textarea type="text" name="content" id="content" autofocus
+                        class="w-100 blfue-gradient"></textarea><br><br>
+                    <br>
+                    <button class="btn btn-outline-dark w-100">Submit</button>
+                    <a href="../" class="btn btn-outline-danger w-100">Cancel</a>
+                    <br><br><br>
+
+
+                </form>
+                <!-- </div> -->
+            </div>
+        </div><br><br><br><br>
+
+    </div>
+</div>
+{% endblock %}

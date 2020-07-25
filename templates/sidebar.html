@@ -1,0 +1,32 @@
+{% block sidebar %}
+<style>
+    .card{
+    box-shadow: 0 16px 48px #E3E7EB;
+    }
+    <script>
+        function goBack() {
+        window.history.back();
+        }
+    </script>
+</style>
+<!-- Sidebar Widgets Column -->
+<div class="col-md-4 float-right ">
+    <div class="card my-4">
+        <h5 class="card-header">About Us</h5>
+        <div class="card-body">
+            <p class="card-text">Heal is an institute that aids in the development and refinement dddf of one's English communication skills.
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 
+                <a href="/../courses/about-us"
+                    class="btn peach-gradient">Know more!</a>
+        </div>
+    </div>
+    <div class="card my-4">
+        {% comment %} <h5 class="card-header">Post a Blog</h5> {% endcomment %}
+        <div class="card-body">
+            <a href="/blog/add" class="btn aqua-gradient btn-block btn-rounded z-depth-1a">Add Blog here!</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock sidebar %}

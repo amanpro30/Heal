@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block physiotherapist_homepage %}
+
+<script>
+function relocate_slots()
+{
+     location.href = "/physiotherapist/date_add/";
+}
+function relocate_show_slots()
+{
+     location.href = "/physiotherapist/slots/";
+}
+function relocate_complaint()
+{
+     location.href = "/physiotherapist/complaint_feedback/";
+}
+function relocate_feedback()
+{
+     location.href = "/physiotherapist/show_complaint_feedback/";
+}
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+</script> 
+
+<!-- NAV BAR -->
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <div class="container">
+        <a href='/' class="navbar-brand"><b>HEAL AT HOME</b></a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a href='{% url "physiotherapist:home" %}'  class="nav-link">Home</a>
+			</li>
+			<li class="nav-item">
+				<a href='{% url "physiotherapist:modify_profile" %}'  class="nav-link">Edit Profile</a>
+			  </li>
+			<li class="nav-item">
+				<a href=''  class="nav-link">Bookings</a>
+			  </li>
+			
+			  <li class="nav-item">
+				<a href='/physiotherapist/show_complaint_feedback/'  class="nav-link">Show complaints/feedback</a>
+			  </li>
+			
+
+           
+            <li class="nav-item active">
+              <a href='' class="nav-link">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <style>
+  		.checked{
+  			color: orange;
+  		}
+  		.button {
+		    border: none;
+		    color: black;
+		    background-color: #edecea;
+		    padding: 15px 25px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 20px;
+		    margin: 4px 2px;
+		    cursor: pointer;
+		}
+		.button:hover{
+			background-color: rgb(244, 173, 66);
+			color: white;
+		}
+		td{
+			padding:15px 45px;
+			font-size: 17px;
+		}
+		.heading_btn{
+			padding:15px 45px;
+			font-size: 20px;
+			cursor: pointer;
+		}
+		.heading_btn:hover{
+			background-color: rgb(244, 173, 66);
+		}
+
+  	</style>
+
+
+<div class="container" style="margin-top: 5%">
+		<div class="row">
+			<div class="col-md-3">
+				<br>
+				<div>
+					 <img src="/media/{{profile.profile_photo}}" class="img-rounded" alt="DOCTOR" width="210" height="236"> 
+				</div>
+
+				<br>
+
+
+
+			</div>
+			<div class="col-md-9 col-sm-offset-1">
+				<div class="col-xs-8 text-left" style='padding: 15px 45px'>
+					<span style="font-size: 35px; ">Dr. {{profile.first_name}} {{profile.last_name}}</span>&nbsp&nbsp&nbsp
+
+				</div>
+				<div style="margin-top: 7px;color: blue;font-size: 20px; padding: 1px 45px" >
+					PHYSIOTHERAPIST
+				</div>
+
+          <br><br>
+			    <div class="btn-group btn-group-md" style='padding: 2px 45px'>
+				    <!-- <button class="button button1">Send Message</button> -->
+			<butoon class="button button3" onclick=" relocate_slots()">Make Slot</butoon>
+			<butoon class="button button3" onclick=" relocate_show_slots()">Show Slots</butoon>
+			<a href="#contact" class="button button3" role="button">Bookings</a>
+			<butoon class="button button3" onclick=" relocate_complaint()">Complaint/Feedback</butoon>
+			<!-- <butoon class="button button3" onclick=" relocate_feedback()" >Show Complaint</butoon> -->
+
+			
+
+				    {% comment %} <!-- <button class="button button2" href="#contact"> Contact</button> -->
+				    <butoon class="button button3" onclick=" relocate_edit()">Edit</butoon>
+            <butoon class="button button3" onclick=" relocate_appointment()">Show Appointments</butoon>
+            <butoon class="button button3" onclick=" relocate_slots()">Make Slot</butoon> {% endcomment %}
+			    </div>
+
+			    	<br><br>
+
+
+          <div style='padding: 0px 45px'>
+          <hr>
+          </div>
+			    	<br>
+
+			    <!-- <div style="display: none;" id="Experience">
+			    	<span style="font-size: 17px;">Doctors's experience will be here.</span>
+			    </div> -->
+
+			    	<div style="padding: 5px 45px;font-size: 16px;opacity: 0.5;">
+			    		PHYSIOTHERAPIST BASIC INFORMATION
+			    	</div><br>
+			    	<div>
+			    		<table>
+			    			<tr>
+			    				<td>Date of Birth</td>
+			    				<td>{{profile.dob}}</td>
+			    			</tr>
+			    			<tr>
+			    				<td>Gender</td>
+			    				<td>{{profile.gender}}</td>
+			    			</tr>
+                            <tr>
+			    				<td>Experience</td>
+			    				<td>{{profile.experience}}</td>
+			    			</tr>
+                            <tr>
+			    				<td>Speciality</td>
+			    				<td>{{profile.speciality}}</td>
+			    			</tr>
+			    		</table>
+			    	</div><br>
+			    	<div style="padding: 15px 45px;font-size: 16px;opacity: 0.5;">
+              <a name="contact"></a>
+			    		CONTACT INFORMATION
+			    	</div><br>
+			    	<table>
+			    		<tr>
+			    			<td>Phone</td>
+			    			<td>+91{{profile.mob_no}}</td>
+			    		</tr>
+			    		<tr>
+			    			<td>Locality</td>
+			    			<td>{{profile.house_no}} {{profile.city}} {{profile.state}}</td>
+			    		</tr>
+              <tr>
+			    			{% comment %} <td>Hospital</td>
+			    			<td>wjenjwe</td> {% endcomment %}
+			    		</tr>
+			    		<tr>
+			    			<td>E-Mail</td>
+			    			<td>{{profile.user.email}}</td>
+			    		</tr>
+
+			    	</table>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+<br><br><br><br>
+{% endblock %}

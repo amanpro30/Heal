@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block physiotherapist_edit_profile %}
+<!-- NAV BAR -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container">
+    <a href='/' class="navbar-brand"><b>HEAL AT HOME</b></a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a href='{% url "physiotherapist:home" %}'  class="nav-link">Home</a>
+  </li>
+  <li class="nav-item">
+    <a href='{% url "physiotherapist:modify_profile" %}'  class="nav-link">Edit Profile</a>
+    </li>
+  <li class="nav-item">
+    <a href=''  class="nav-link">Bookings</a>
+    </li>
+  
+    <li class="nav-item">
+    <a href='/physiotherapist/show_complaint_feedback/'  class="nav-link">Show complaints/feedback</a>
+    </li>
+  
+
+       
+        <li class="nav-item active">
+          <a href='' class="nav-link">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!--
+<form method="POST" action="">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" value="save">
+</form>
+-->
+
+<!-- <div class="page-header">
+
+    <center><h1> Profile </h1></center>
+
+</div> -->
+<title> profile </title>
+{% if error_message %}
+  <p><strong>{{error_message}}</strong></p>
+{% endif %}
+<!-- BOOTSTRAP FILES -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+          <br><br><br>
+          <div class='container'>
+            <div class="row">
+              <div class='col-5' style="background-image:url({% static 'img/profile.jpg' %});background-repeat; background-size:cover;height:600px">
+
+              </div>
+              <div class='col-7'>
+                <form class="form-horizontal text-left" action="" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                  {% csrf_token %}
+                  {% include 'physiotherapist/profile_template.html' %}
+
+
+                    <div class="col-sm-offset-2 col-sm-5 text-right">
+                      <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+{% endblock %}

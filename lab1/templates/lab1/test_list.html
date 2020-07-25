@@ -1,0 +1,171 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+{% block test_list %}
+<script>
+{% comment %} function relocate_edit()
+{
+     location.href = "/profile/modify_profile";
+}
+
+function relocate_appointment()
+{
+     location.href = "/appointments/";
+}
+function relocate_slots()
+{
+     location.href = "/profile/date_add/";
+}
+</script> {% endcomment %}
+</script>
+<!-- NAV BAR -->
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <div class="container">
+        <a href='' class="navbar-brand"><b>HEAL AT HOME</b></a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a href='' class="nav-link">Home</a>
+            </li>
+
+
+           
+            <li class="nav-item active">
+              <a href='' class="nav-link">Logout</a>
+            </li> 
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <style>
+  		.checked{
+  			color: orange;
+  		}
+  		.button {
+		    border: none;
+		    color: black;
+		    background-color: #edecea;
+		    padding: 15px 25px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 20px;
+		    margin: 4px 2px;
+		    cursor: pointer;
+		}
+		.button:hover{
+			background-color: rgb(244, 173, 66);
+			color: white;
+		}
+		td{
+			padding:15px 45px;
+			font-size: 17px;
+		}
+		.heading_btn{
+			padding:15px 45px;
+			font-size: 20px;
+			cursor: pointer;
+		}
+		.heading_btn:hover{
+			background-color: rgb(244, 173, 66);
+		}
+
+  	</style>
+
+
+<div class="container" style="margin-top: 5%">
+		<div class="row">
+			<div class="col-md-2">
+				<br>
+				<div>
+					<img src="/media/{{profile.profile_photo}}" class="img-rounded" alt="DOCTOR" width="200" height="236"> 
+				</div>
+
+				<br>
+
+            
+
+			</div>
+			<div class="col-md-10 col-sm-offset-1">
+				<div class="col-xs-8 text-left" style='padding: 15px 45px'>
+					<span style="font-size: 35px; ">{{profile.lab_name}}</span>&nbsp&nbsp&nbsp
+					<span style="font-size: 15px; "><a href="{% url 'lab1:lab_modify_profile'  %}">Edit Profile</a></span>&nbsp&nbsp&nbsp
+
+				</div>
+				<div style="margin-top: 7px;color: blue;font-size: 20px; padding: 1px 45px" >
+					{{profile.lab_name}}
+				</div>
+
+          <br><br>
+			    <div class="btn-group btn-group-md" style='padding: 2px 45px'>
+				    <!-- <button class="button button1">Send Message</button> -->
+            
+			<a href="{% url 'lab1:lab_show_tests'  %}" class="button button3" role="button">View Tests</a>
+			<a href="{% url 'lab1:lab_assign_collector'  %}" class="button button3" role="button">Add Sample Collector</a>
+			<a href="{% url 'lab1:lab_collected_samples'  %}" class="button button3" role="button">Collected Samples</a>
+			<a href="{% url 'lab1:lab_reports' %}" class="button button3" role="button">Reports</a>
+
+			
+
+				    {% comment %} <!-- <button class="button button2" href="#contact"> Contact</button> -->
+				    <butoon class="button button3" onclick=" relocate_edit()">Edit</butoon>
+            <butoon class="button button3" onclick=" relocate_appointment()">Show Appointments</butoon>
+            <butoon class="button button3" onclick=" relocate_slots()">Make Slot</butoon> {% endcomment %}
+			    </div>
+
+			    	<br><br>
+
+
+          <div style='padding: 0px 45px'>
+          <hr>
+          </div>
+			    	<br>
+
+			    <!-- <div style="display: none;" id="Experience">
+			    	<span style="font-size: 17px;">Doctors's experience will be here.</span>
+			    </div> -->
+
+			    	<div style="padding: 15px 45px;font-size: 16px;opacity: 0.5;">
+			    		LAB TESTs AVAILABLE
+			    	</div><br>
+			    	<div class="container">
+                        <div class="row">
+                            {% for test in all_test %}
+                    
+                    <div class="col-md-3 medicine_hover">
+                      <div class="card medicine_1" style="text-align: center;border: none;">
+                        <img class="card-img-top img_list" src="/media/{{test.photo}}" alt="{{test.name}}" style="width:2300; height:200px;">
+                        <div class="card-body">
+                          <h4 class="card-title">{{test.name}}</h4>
+                          
+                          <p class="card-text">
+                            <i><span style="font-size: 10px;">by <a href="#">{{test.test_type}}{{test.test_type}}</a></span></i><br>
+                            <span style="color: red;"><i class="fa fa-rupee" style="font-size: 14px;"></i><s>{{ test.price }}</s></span>
+                           <span style="color: red;"><i class="fa fa-rupee" style="font-size: 14px;"></i>{{ test.discounted_price }}</span>
+                           
+                          </p>
+                        </div>
+                      </div>
+                      <br>  
+                    </div>
+                    
+                            {% endfor %}
+                        </div>
+                    </div> 
+			    	
+			    	
+			    </div>
+			</div>
+		</div>
+	</div>
+
+<br><br><br><br>
+
+
+{% endblock %}

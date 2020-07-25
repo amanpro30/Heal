@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block report_detail %}
+
+
+  <title>Report</title>
+  <!-- NAV BAR -->
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container">
+      <a href='' class="navbar-brand"><b>HEAL AT HOME</b></a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          {% comment %} <li class="nav-item">
+            <a href='' class="nav-link">Home</a>
+          </li>
+  
+  
+         
+          <li class="nav-item active">
+            <a href='' class="nav-link">Logout</a>
+          </li> {% endcomment %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+        
+
+  <div class="container-fluid">
+          <div class="col-sm-8 col-md-9">
+            <br>
+              <a href="{% url 'report:create_item' report.id %}" alt="link" style="text-decoration:none;"><button class="btn btn-primary" type="submit">Add New Lab Test </button></a>
+              <a href="{% url 'report:print' report.id %}"><button class="btn btn-primary" type="submit">Print Report</button></a>
+              <br>
+              <br>
+
+              <div class="panel panel-default">
+                  <div class="panel-body">
+
+                      <!-- <h3>Patient Name : {{prescription.appointment.paitent.first_name}} {{prescription.appointment.paitent.last_name}}</h3>
+                      <h3>Dr. {{prescription.doctor.first_name}} {{prescription.doctor.last_name}}</h3> -->
+
+                      <br>
+                      {% if error_message %}
+                          <p><strong>{{ error_message }}</strong></p>
+                      {% endif %}
+
+                      <table class="table">
+                          <thead>
+                          <tr>
+                              <th>Lab Test Name</th>
+                              <th>Value</th>
+                              <th>Unit</th>
+                              <th>Min Value</th>
+                              <th>Max Value</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          {% for item in report.item_set.all %}
+                              <tr>
+                                  <td>{{ item.lab_test_name }}</td>
+                                  <td>{{ item.value}}</td>
+                                  <td>{{ item.lab_test.unit}}</td>
+                                  <td>{{ item.lab_test.min_value}}</td>
+                                  <td>{{ item.lab_test.max_value}}</td>
+                                  
+
+                              </tr>
+                          {% endfor %}
+                          </tbody>
+                      </table>
+
+                  </div>
+              </div>
+
+          </div>
+
+      </div>
+
+
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

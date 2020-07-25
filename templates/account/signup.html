@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% load static %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% block register %}
+
+<link rel="stylesheet" href="{% static  'css/style.css' %}">
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-6 col-lg-4 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h3 class="card-title text-center font-weight-bold">Sign Up</h3>
+            <form class="form-signin mx-auto" id="signup_form" method="post" action="{% url 'account_signup' %}">
+              {%csrf_token %}
+              {% if form.errors %}
+              {% for field in form %}
+              {% for error in field.errors %}
+              <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+              </div>
+              {% endfor %}
+              {% endfor %}
+              {% for error in form.non_field_errors %}
+              <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+              </div>
+              {% endfor %}
+              {% endif %}
+              <!-- Material inline 1 -->
+              <br>
+              {{ form.fir}}
+              <div class="clicked">
+                {{ form.profession }}
+                {{ form.username | add_class:"form-control" | attr:"placeholder:Username" }}<br>
+                {{ form.email | add_class:"form-control" | attr:"placeholder:email" }}<br>
+                <div id="lab" style="display: none;">
+                  {{ form.lab_name | add_class:"form-control" | attr:"placeholder:Lab Name" }}<br>
+                  {{ form.lab_registration | add_class:"form-control" | attr:"placeholder:Lab Registration" }}<br>
+                  {{ form.lab_owner | add_class:"form-control" | attr:"placeholder:Lab Owner" }}<br>
+                  {{ form.lab_address | add_class:"form-control" | attr:"placeholder:Lab Address" }}<br>
+                </div>
+                <div id="not_lab">
+                  {{ form.first_name | add_class:"form-control" | attr:"placeholder:First Name" }}<br>
+                  {{ form.last_name | add_class:"form-control" | attr:"placeholder:Last Name" }}<br>
+                  {{ form.age | add_class:"form-control" | attr:"placeholder:Age" }}<br>
+                </div>
+                {{ form.password1 | add_class:"form-control" | attr:"placeholder:password"  }}<br>
+                {{ form.password2 | add_class:"form-control" | attr:"placeholder:confirm password" }}<br>
+                {{ form.house_no | add_class:"form-control" | attr:"placeholder:house_no" }}<br>
+                {{ form.city | add_class:"form-control" | attr:"placeholder:city" }}<br>
+                {{ form.state | add_class:"form-control" | attr:"placeholder:state" }}<br>
+                {{ form.pin | add_class:"form-control" | attr:"placeholder:pin" }}<br>
+                {{ form.gender | add_class:"form-control" | attr:"placeholder:gender" }}<br>
+                {{ form.dob | add_class:"form-control" | attr:"placeholder:dob" }}<br>
+                {{ form.mob_no | add_class:"form-control" | attr:"placeholder:mob_no" }}<br>
+                <div id="doc">
+                  {{ form.speciality | add_class:"form-control" | attr:"placeholder:speciality" }}<br>
+                  {{ form.experience | add_class:"form-control" | attr:"placeholder:experience" }}<br>
+                </div>
+                <div id="nurse" style="display: none;">
+                  {{ form.experience | add_class:"form-control" | attr:"placeholder:experience" }}<br>
+                </div>
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <button type='submit' class="btn btn-dark btn-block text-uppercase">Register</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  $('#id_profession_0').on('click', function (event) {
+    document.getElementById('doc').style.display = "none";
+    document.getElementById('nurse').style.display = "none";
+    document.getElementById('not_lab').style.display = "block";
+    document.getElementById('lab').style.display = "none";
+  });
+  $('#id_profession_1').on('click', function (event) {
+    document.getElementById('doc').style.display = "block";
+    document.getElementById('nurse').style.display = "none";
+    document.getElementById('not_lab').style.display = "block";
+    document.getElementById('lab').style.display = "none";
+  });
+  $('#id_profession_2').on('click', function (event) {
+    document.getElementById('doc').style.display = "none";
+    document.getElementById('nurse').style.display = "block";
+    document.getElementById('not_lab').style.display = "block";
+    document.getElementById('lab').style.display = "none";
+  });
+  $('#id_profession_3').on('click', function (event) {
+    document.getElementById('doc').style.display = "none";
+    document.getElementById('nurse').style.display = "none";
+    document.getElementById('not_lab').style.display = "none";
+    document.getElementById('lab').style.display = "block";
+  });
+  $('#id_profession_4').on('click', function (event) {
+    document.getElementById('doc').style.display = "none";
+    document.getElementById('nurse').style.display = "none";
+    document.getElementById('not_lab').style.display = "block";
+    document.getElementById('lab').style.display = "none";
+  });
+</script>
+
+{% endblock %}

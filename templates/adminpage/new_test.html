@@ -1,0 +1,64 @@
+{% extends "adminpage/base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+{% comment %} <div class="container">
+  <div class="row">
+    {% for doctors in doctor %}
+    <div class="col-md-5 medicine_1">
+      <div class="col-md-12" > {% endcomment %}
+        {% comment %} <img src="{{ doctors.profile_photo.url }}" class="img-responsive img_list"  style="margin-top: 5%; height:250px;width:100%"><br><hr>
+        <h5>{{doctors.first_name}} {{doctors.last_name}}</h5>
+        Speciality : <span>{{ doctors.speciality }}</span><br>
+        Hospital:<a href="#"> {{doctors.hospital}}</a><br><br>
+        <button class="btn btn-default"><a href='{{ doctors.get_absolute_url_show }}'>View</a></button> {% endcomment %}
+        {% comment %} <br><br><br><br>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div> {% endcomment %}
+<title> profile </title>
+{% if error_message %}
+  <p><strong>{{error_message}}</strong></p>
+{% endif %}
+<!-- BOOTSTRAP FILES -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+          <br><br><br>
+          <div class='container'>
+            <div class="row">
+              <div class='col-6' style="background-image:url({% static 'img/add_test.jpeg' %});background-repeat; background-size:cover;height:600px">
+
+              </div>
+              <div class='col-6'>
+                <form class="form-horizontal text-left" action="" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                  {% csrf_token %}
+                  {% include 'adminpage/add_test_template.html' %}
+
+
+                    <div class="col-sm-offset-2 col-sm-5 text-right">
+                      <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+{% endblock content %}

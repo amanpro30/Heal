@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+{% block lab_make_profile %}
+
+
+
+{% if error_message %}
+  <p><strong>{{error_message}}</strong></p>
+{% endif %}<br>
+
+  <h1 style="text-align: center;">Please reenter your  correct details</h1><br>
+
+   <div class='container-fluid'>
+     <div class='row mx-auto'>
+      <div class='col-sm-5 col-md-7 col-lg-3 mx-auto'>
+            <div class="form-group">
+            <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+                 <table>
+                   <tr>
+                      <tb>First Name:</tb>
+                      <tb>{{ form.first_name  | add_class:"form-control"  }}</tb>
+                  </tr>
+                  <tr>
+                    <tb>Last Name:</tb>
+                    <tb>{{ form.last_name  | add_class:"form-control"  }}</tb>
+                </tr>
+            
+                <tr>
+                  <tb>Gender:</tb>
+                  <tb>{{ form.gender  | add_class:"form-control"  }}</tb>
+              </tr>
+              <tr>
+                <tb>Age:</tb>
+                <tb>{{ form.age  | add_class:"form-control"  }}</tb>
+            </tr>
+            <tr>
+              <tb>Date of Birth</tb>
+              <tb>{{ form.dob  | add_class:"form-control"  }}</tb> 
+          </tr>
+          <tr>
+            <tb>Bike Available</tb>
+            <tb>{{ form.bike_available  | add_class:"form-control"  }}</tb>
+        </tr>
+                  <tr>
+                    <tb>Profile pic (URL)</tb>
+                    <tb>{{ form.profile_pic  | add_class:"form-control"  }}</tb>
+                </tr> 
+                <tr>
+                  <tb>House No</tb>
+                  <tb>{{ form.house_no  | add_class:"form-control"  }}</tb>
+              </tr>
+              <tr>
+                <tb>City</tb>
+                <tb>{{ form.city  | add_class:"form-control"  }}</tb>
+            </tr>
+            <tr>
+              <tb>State</tb>
+              <tb>{{ form.state  | add_class:"form-control"  }}</tb>
+          </tr>
+          <tr>
+            <tb>Zip Code</tb>
+            <tb>{{ form.pin  | add_class:"form-control"  }}</tb>
+        </tr>
+        <tr>
+          <tb>Mobile No</tb>
+          <tb>{{ form.mob_no  | add_class:"form-control"  }}</tb>
+      </tr>
+                 </table>
+
+              
+               
+            
+              <!-- Email:{{ form.email_id | add_class:"form-control" }} -->
+             
+              
+             
+              <span class="text-danger small">{{form.mobile_no.errors}}</span>
+
+                  <button type="submit" class="btn btn-dark form-control">Submit</button>
+                  
+                  
+
+          </form>
+          </div>
+        </div>
+    </div>
+  </div>
+
+
+{% endblock %}

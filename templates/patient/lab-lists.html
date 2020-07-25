@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block physiotherapist_show_slot %}
+<!-- NAV BAR -->
+<style>
+    .bcontent {
+        margin-top: 10px;
+    }
+</style>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container">
+        <a href='/' class="navbar-brand"><b>HEAL AT HOME</b></a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href='{% url "patient:home" %}' class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href='{% url "patient:modify_profile" %}' class="nav-link">Edit Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href='' class="nav-link">Bookings</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href='/patient/show_complaint_feedback/' class="nav-link">Show complaints/feedback</a>
+                </li>
+                <li class="nav-item active">
+                    <a href='' class="nav-link">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br />
+
+<h2 style="text-align: center;">Labs Available</h2>
+<hr />
+<div class="container bcontent">
+    <div class="row" id="filter-result">
+        {% for lab in labs %}
+        <div class="card col-md-5" style="margin-left: 70px;height: 200px;">
+            <div class="row no-gutters">
+                <div class="col-md-5">
+                    <img class="card-img" src="/media/{{lab.profile_photo}}" style="height: 200px;" alt="{{lab.lab_name}}">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <h5 class="card-title">{{lab.lab_name}}</h5>
+                        <p class="card-text">{{lab.lab_address}}<br/>
+                            {{lab.city}}, {{lab.state}}
+                        </p>
+                        <br/>
+                        <a href="{% url 'patient:book_test' test_id=test_id lab_id=lab.id %}" class="btn btn-dark btn-block">Select</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

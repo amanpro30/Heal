@@ -1,0 +1,117 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+{% block test_list %}
+
+<!-- NAV BAR -->
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <div class="container">
+        <a href='' class="navbar-brand"><b>HEAL AT HOME</b></a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a href='' class="nav-link">Home</a>
+            </li>
+
+
+           
+            <li class="nav-item active">
+              <a href='' class="nav-link">Logout</a>
+            </li> 
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <style>
+  		.checked{
+  			color: orange;
+  		}
+  		.button {
+		    border: none;
+		    color: black;
+		    background-color: #edecea;
+		    padding: 15px 25px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 20px;
+		    margin: 4px 2px;
+		    cursor: pointer;
+		}
+		.button:hover{
+			background-color: rgb(244, 173, 66);
+			color: white;
+		}
+		td{
+			padding:15px 45px;
+			font-size: 17px;
+		}
+		.heading_btn{
+			padding:15px 45px;
+			font-size: 20px;
+			cursor: pointer;
+		}
+		.heading_btn:hover{
+			background-color: rgb(244, 173, 66);
+		}
+
+  	</style>
+
+
+<div class="container" style="margin-top: 5%">
+		<div class="row">
+			
+			<div class="col-md-10 col-sm-offset-1">
+				
+				
+
+
+          <div style='padding: 0px 45px'>
+          <hr>
+          </div>
+			    	<br>
+
+			    <!-- <div style="display: none;" id="Experience">
+			    	<span style="font-size: 17px;">Doctors's experience will be here.</span>
+			    </div> -->
+
+			    	<div style="padding:  ;font-size: 16px;opacity: 0.5;">
+			    		Select collector for sample collection
+			    	</div><br>
+			    	<div class="container">
+                        <div class="row">
+                            <table>
+                                <thead class="thead-light">
+                                    <tr>
+                                      <th>Collector Id&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                      <th>First Name</th>
+                                      <th>Last Name</th>
+                                      <th>Mobile Number</th>
+                                      <th>Link</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                
+                            
+                            
+                            </tbody>
+                        </table>
+                        </div>
+                    </div> 
+			    	
+			    	
+			    </div>
+			</div>
+		</div>
+	</div>
+
+<br><br><br><br>
+
+
+{% endblock %}

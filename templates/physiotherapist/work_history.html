@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+
+{% block physio_work_history %}
+  <script type="text/javascript">
+
+
+    function checkTime(i) {
+      if (i < 10) {
+        i = "0" + i;
+      }
+      return i;
+      }
+
+    function check_link(date1,time1,pk)
+    {
+      var today = new Date();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      var s = today.getSeconds();
+      h = checkTime(h);
+      m = checkTime(m);
+      s = checkTime(s);
+      time=h+':'+m+':'+s;
+
+      var dd = today.getDate();
+      var mm = today.getMonth()+1; //January is 0!
+      var yyyy = today.getFullYear();
+      if(dd<10) {
+          dd = '0'+dd
+      }
+      if(mm<10) {
+          mm = '0'+mm
+      }
+      today = yyyy + '-' + mm + '-' + dd;
+
+      console.log(date1);
+      console.log(today);
+      console.log(time1);
+      console.log(time);
+      var time2= time1.split(":");
+      console.log(time2);
+      var time3 = time.split(":");
+      console.log(time3);
+
+
+      check1=date1.localeCompare(today)
+      console.log(check1)
+      if(check1==0 && time2[0]==time3[0] && (time3[1]-time2[1])<15)
+      {
+        id1='attend'+pk;
+        document.getElementById(id1.toString()).setAttribute("style", "pointer-events: auto;");
+        document.getElementById(id2.toString()).setAttribute("style", "pointer-events: auto;");
+
+
+      }
+
+
+    }
+</script>
+        <!-- NAV BAR -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container">
+      <a href='/' class="navbar-brand"><b>HEAL AT HOME</b></a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href='{% url "physiotherapist:home" %}'  class="nav-link">Home</a>
+    </li>
+    <li class="nav-item">
+      <a href='{% url "physiotherapist:modify_profile" %}'  class="nav-link">Edit Profile</a>
+      </li>
+    <li class="nav-item">
+      <a href=''  class="nav-link">Bookings</a>
+      </li>
+    
+      <li class="nav-item">
+      <a href='/physiotherapist/show_complaint_feedback/'  class="nav-link">Show complaints/feedback</a>
+      </li>
+    
+  
+         
+          <li class="nav-item active">
+            <a href='' class="nav-link">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+        <div class="container-fluid">
+
+                <div class="col-sm-8 col-md-12" style="padding-right:20px">
+
+                    <div class="panel panel-default" style="padding-right:20px">
+                        <div class="panel-body">
+                          <br>
+                      <h3>&nbspHello Dr. {{first_name}}  {{last_name}}</h3>
+
+                      {% if error_message %}
+                          <p><strong>{{ error_message }}</strong></p>
+                      {% endif %}
+                      <br>
+                      <table class="table table-striped table-hover ">
+                          <thead>
+                          <tr>
+                              <th>Date</th>
+                              <th>Start Time</th>
+                              <th>Patient Name</th>
+                              <!-- <th>RMP Name </th> -->
+                              <th>Problem</th>
+                              <th>Description</th>
+                              <th> </th>
+
+                          </tr>
+                          </thead>
+                          <tbody>
+                          {% for appointment in appointments %}
+                          <!-- disable() -->
+                              <tr>
+                                  <td id="a"> {{appointment.date.date}}</td>
+                                  <td id="b"> {{appointment.slot_id.start_time}}</td>
+                                  <td> {{appointment.patient_id.first_name}} {{appointment.patient_id.last_name}}</td>
+                                  <td> {{appointment.problem}}</td>
+                                  <td> {{appointment.description}}</td>
+                                  <td> Attended </a></td>
+                                  <!-- <td><button type="button" class="btn btn-default" name="check" onclick='check_link("{{appointment.date}}","{{appointment.slot_id.start_time}}","{{appointment.id}}");'> Refresh </button></td> -->
+
+                              </tr>
+                          {% endfor %}
+                          </tbody>
+                      </table>
+                      <div class="alert alert-warning">
+                          {{context}}
+                      </div>
+
+                  </div>
+              </div>
+
+          </div>
+
+      </div>
+
+
+      </br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+      {% endblock %}
+
+</body>
+</html>
