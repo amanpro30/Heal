@@ -23,6 +23,6 @@ urlpatterns = [
         views.lab_lists, name='lab_lists'),
     url(r'^book_test/(?P<test_id>\w+)/(?P<lab_id>\w+)/$',
         views.book_test, name='book_test'),
-    path('bookings', views.bookings, name='bookings'),
-    path('appointments', views.appointments, name='appointments')
+    path('lab-test/', views.bookings, name='lab-test'),
+    path('appointment/', views.appointments, name='appointment')
 ]

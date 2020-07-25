@@ -41,14 +41,13 @@
                     <a href='{% url "patient:modify_profile" %}' class="nav-link">Edit Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a href='' class="nav-link">Bookings</a>
+                    <a href='{% url "patient:lab-test" %}' class="nav-link">Lab Tests</a>
                 </li>
-
                 <li class="nav-item">
-                    <a href='/patient/show_complaint_feedback/' class="nav-link">Show complaints/feedback</a>
+                    <a href='{% url "patient:appointment" %}' class="nav-link">Appointments</a>
                 </li>
                 <li class="nav-item active">
-                    <a href='' class="nav-link">Logout</a>
+                    <a href='/accounts/logout' class="nav-link">Logout</a>
                 </li>
             </ul>
         </div>
@@ -116,7 +115,6 @@
                 <butoon class="button button3" onclick=" buy_tests()">Buy Test</butoon>
                 <butoon class="button button3" onclick=" book_physiotherapist_session()">Book Physiotherapist Session</butoon>
                 <butoon class="button button3" onclick=" book_nursing_facility()">Book Nursing Facility</butoon>
-                <butoon class="button button3" onclick=" relocate_complaint()">Complaint/Feedback</butoon>
                 <!-- <butoon class="button button3" onclick=" relocate_feedback()" >Show Complaint</butoon> -->
 
 

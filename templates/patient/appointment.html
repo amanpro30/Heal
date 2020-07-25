@@ -15,23 +15,19 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href='{% url "physiotherapist:home" %}' class="nav-link">Home</a>
+                    <a href='{% url "patient:home" %}' class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href='{% url "physiotherapist:modify_profile" %}' class="nav-link">Edit Profile</a>
+                    <a href='{% url "patient:modify_profile" %}' class="nav-link">Edit Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a href='' class="nav-link">Bookings</a>
+                    <a href='{% url "patient:lab-test" %}' class="nav-link">Lab Tests</a>
                 </li>
-
                 <li class="nav-item">
-                    <a href='/physiotherapist/show_complaint_feedback/' class="nav-link">Show complaints/feedback</a>
+                    <a href='{% url "patient:appointment" %}' class="nav-link">Appointments</a>
                 </li>
-
-
-
                 <li class="nav-item active">
-                    <a href='' class="nav-link">Logout</a>
+                    <a href='/accounts/logout' class="nav-link">Logout</a>
                 </li>
             </ul>
         </div>
@@ -46,7 +42,7 @@
         <div class="panel panel-default" style="padding-right:20px">
             <div class="panel-body">
                 <br>
-                <h3>&nbspHello Dr. {{first_name}} {{last_name}}</h3>
+                <h3>&nbspHello {{first_name}} {{last_name}}</h3>
 
                 {% if error_message %}
                 <p><strong>{{ error_message }}</strong></p>
@@ -57,11 +53,11 @@
                         <tr>
                             <th>Date</th>
                             <th>Start Time</th>
-                            <th>Patient Name</th>
+                            <th>Physiotherapist Name</th>
                             <!-- <th>RMP Name </th> -->
                             <th>Problem</th>
                             <th>Description</th>
-                            <th> </th>
+                            <th>Status</th>
 
                         </tr>
                     </thead>
@@ -71,12 +67,15 @@
                         <tr>
                             <td id="a"> {{appointment.date.date}}</td>
                             <td id="b"> {{appointment.slot_id.start_time}}</td>
-                            <td> {{appointment.patient_id.first_name}} {{appointment.patient_id.last_name}}</td>
+                            <td> {{appointment.physiotherapist_id.first_name}} {{appointment.physiotherapist_id.last_name}}</td>
                             <td> {{appointment.problem}}</td>
                             <td> {{appointment.description}}</td>
-                            <td> Attended </a></td>
+                            {% if appointment.status %}
+                                <td> Attended </a></td>
+                            {% else %}
+                                <td> Pending</td>
+                            {% endif %}
                             <!-- <td><button type="button" class="btn btn-default" name="check" onclick='check_link("{{appointment.date}}","{{appointment.slot_id.start_time}}","{{appointment.id}}");'> Refresh </button></td> -->
-
                         </tr>
                         {% endfor %}
                     </tbody>

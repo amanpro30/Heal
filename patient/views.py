@@ -170,7 +170,23 @@ def book_test(request, test_id, lab_id):
     return redirect(reverse('patient:bookings'))
 
 def bookings(request):
-    return render(request, 'patient/booking.html')
+    patient = Patient.objects.get(user = request.user)
+    bookings = LabBooking.objects.filter(patient = patient)
+    context = {
+        "bookings": bookings,
+        "first_name": patient.first_name,
+        "last_name": patient.last_name
+    }
+    return render(request, 'patient/booking.html', context=context)
 
 def appointments(request):
-    return render(request, 'patient/appointment.html')
+    user=request.user
+    physiotherapist = Patient.objects.get(user=user)
+    appointments= AppointmentPhysio.objects.filter(patient_id=physiotherapist).order_by('date').order_by('slot_id')
+    first_name=physiotherapist.first_name
+    last_name=physiotherapist.last_name
+    if not appointments:
+        context="Hurray No Pending Appointments"
+    else:
+        context="Pending Appointments"
+    return render(request,'patient/appointment.html',{'context':context,'appointments':appointments,'first_name':first_name,'last_name':last_name})

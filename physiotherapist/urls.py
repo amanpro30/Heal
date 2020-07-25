@@ -20,7 +20,6 @@ urlpatterns = [
     path('complaint_feedback/', views.ComplaintFeedbackCreate.as_view(), name='complaint_feedback'),
     path('show_complaint_feedback/', views.show_complaint_feedback, name='show_complaint_feedback'),
     url(r'^delete_slot/(?P<slot_id>[0-9]+)$',views.delete_slot,name='delete_slot'),
-    
     path('appointments/',views.show_appointments,name='show_appointments'),
     path('work_history/',views.work_history,name='work_history'),
     # path('attend_appointment',views.show_slots,name='show_slots'),

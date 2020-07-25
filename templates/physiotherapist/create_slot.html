@@ -5,35 +5,34 @@
 {% block slot %}
  <!-- NAV BAR -->
  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <div class="container">
-    <a href='/' class="navbar-brand"><b>HEAL AT HOME</b></a>
-    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a href='{% url "physiotherapist:home" %}'  class="nav-link">Home</a>
-  </li>
-  <li class="nav-item">
-    <a href='{% url "physiotherapist:modify_profile" %}'  class="nav-link">Edit Profile</a>
-    </li>
-  <li class="nav-item">
-    <a href=''  class="nav-link">Bookings</a>
-    </li>
-  
-    <li class="nav-item">
-    <a href='/physiotherapist/show_complaint_feedback/'  class="nav-link">Show complaints/feedback</a>
-    </li>
-  
-
-       
-        <li class="nav-item active">
-          <a href='' class="nav-link">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </div>
+	<div class="container">
+		<a href='/' class="navbar-brand"><b>HEAL AT HOME</b></a>
+		<button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a href='{% url "physiotherapist:home" %}' class="nav-link">Home</a>
+				</li>
+				<li class="nav-item">
+					<a href='{% url "physiotherapist:modify_profile" %}' class="nav-link">Edit Profile</a>
+				</li>
+				<li class="nav-item">
+					<a href='{% url "physiotherapist:show_appointments"%}' class="nav-link">Appointments</a>
+				</li>
+				<li class="nav-item">
+					<a href='{% url "physiotherapist:work_history"%}' class="nav-link">Work History</a>
+				</li>
+				<li class="nav-item">
+					<a href='/physiotherapist/show_complaint_feedback/' class="nav-link">Show complaints/feedback</a>
+				</li>
+				<li class="nav-item active">
+					<a href='/accounts/logout' class="nav-link">Logout</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 </nav>
 <br><br><br>
 <div class='container'>
