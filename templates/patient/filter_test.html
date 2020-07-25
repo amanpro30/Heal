@@ -14,9 +14,14 @@
                     <span style="color: red;"><i class="fa fa-rupee"
                             style="font-size: 14px;"></i>{{ test.discounted_price }}</span>
                 </p>
-                <a href="" class="btn btn-primary">
-                    Click to Buy
-                </a>
+                <div class="row">
+                    <button data-toggle="modal" class="btn btn-dark" href="#myModal2">
+                        View Details
+                    </button>
+                    <a href="{% url 'patient:lab_lists' test_id=test.id %}" class="btn btn-secondary">
+                        Click to Buy
+                    </a>
+                </div>
             </div>
         </div>
         <br>
