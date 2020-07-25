@@ -16,6 +16,7 @@ from appointment.models import AppointmentNurse, AppointmentPhysio
 from lab1.models import Lab1
 from patient.models import LabBooking
 from django.contrib.auth.models import User 
+from django.db.models import Q
 
 
 # Create your views here.
@@ -157,7 +158,7 @@ def load_slot_nurse(request):
 
 def filter_tests(request):
     keyword = request.GET.get('keyword')
-    tests = Test.objects.filter(condition__startswith=keyword)
+    tests = Test.objects.filter(test_type__startswith=keyword)
     return render(request, 'patient/filter_test.html', {'tests': tests})
 
 def lab_lists(request, test_id):

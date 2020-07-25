@@ -33,6 +33,7 @@ urlpatterns = [
     path('lab1/',include('lab1.urls')),
     path('samplecollector/',include('samplecollector.urls')),
     path('blog/', include('blog.urls')),
+    path('api/', include('api.urls')),
 ]
 
 

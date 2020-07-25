@@ -33,19 +33,17 @@
 </nav>
 <br />
 <br />
-<form id="Filter_Form" filter-url="{% url 'patient:filter_tests' %}" novalidate action="">
-    <div class="container">
-        <div class="row">
-            <input class="form-control col-md-6 offset-md-2" type="text" placeholder="Search for Tests.." id="filter">
-            <button class="col-md-2 btn btn-dark" id="search">Search</button>
-        </div>
+<div class="container">
+    <div class="row">
+        <input class="form-control col-md-6 offset-md-2" type="text" placeholder="Search for Tests.." id="filter">
+        <button class="col-md-2 btn btn-dark" id="search">Search</button>
     </div>
-</form>
+</div>
 <br />
 <br />
 
-<div class="container">
-    <div class="row" id="filter-result">
+<div class="container" id="filter-result">
+    <div class="row">
         {% for test in tests %}
         <div class="col-md-3 medicine_hover">
             <div class="card medicine_1" style="text-align: center;border: none;">
@@ -78,8 +76,8 @@
 </div>
 <script>
     $("#search").click(function () {
-        var url = $("#Filter_Form").attr("filter-url");
-        var keyword = $(this).val();
+        var url = "{% url 'patient:filter_tests' %}";
+        var keyword = $("#filter").val();
         console.log('Changed', url, keyword);
         $.ajax({
             url: url,
@@ -89,7 +87,7 @@
             success: function (data) {
                 $("#filter-result").html(data);
             }
-        }, () => { console.log(dateId); });
+        });
     });
 </script>
 {% endblock %}

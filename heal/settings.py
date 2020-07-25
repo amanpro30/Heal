@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     'dal',
     'dal_select2',
     'blog',
+    'api',
+    'rest_framework',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
